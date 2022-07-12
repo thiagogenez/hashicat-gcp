@@ -1,0 +1,7 @@
+export TOKEN=$(grep token /root/.terraform.d/credentials.tfrc.json | cut -d '"' -f4)
+
+export ORG="MYORGNAME"
+curl -s --header "Authorization: Bearer $TOKEN" --header "Content-Type: application/vnd.api+json"   https://app.terraform.io/api/v2/organizations/$ORG/workspaces/hashicat-gcp | jq -r .data.id
+
+https://www.terraform.io/docs/cloud/api/workspace-variables.html#sample-request
+https://www.terraform.io/docs/cloud/api/run.html#sample-request
